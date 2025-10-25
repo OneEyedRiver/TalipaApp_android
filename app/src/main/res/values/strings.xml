@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TalipaApp</string>
+
+
+    <string name="firstnameInput">First Name</string>
+    <string name="lastnameInput">Last name</string>
+    <string name="usernameInput">Username</string>
+    <string name="emailInput">Email</string>
+    <string name="phoneInput">Phone</string>
+    <string name="passwordInput">Password</string>
+    <string name="passwordInput2">Confirm Password</string>
+    <string name="registerBtn">Register</string>
+
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="back">Back</string>
+
+</resources>

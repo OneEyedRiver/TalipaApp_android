@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F2F5">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#F8F8F8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Header -->
+        <include layout="@layout/layout_header" />
+
+        <!-- Scrollable Content (everything above the map) -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:elevation="2dp">
+
+                    <EditText
+                        android:id="@+id/inputDish"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="48dp"
+                        android:hint="Search "
+                        android:textColorHint="@color/black"
+                        android:textColor="@color/black"
+                        android:paddingHorizontal="12dp"
+                        android:inputType="text"
+                        android:imeOptions="actionSearch"
+                        android:drawableStart="@android:drawable/ic_menu_search"
+                        android:drawablePadding="8dp"/>
+
+
+                    <Button
+                        android:id="@+id/btnSearch"
+                        android:layout_width="77dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="@color/blue"
+                        android:drawablePadding="6dp"
+                        android:paddingHorizontal="16dp"
+                        android:text="Search"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btnAdd"
+                        android:layout_width="70dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="@color/red"
+                        android:drawablePadding="6dp"
+                        android:paddingHorizontal="16dp"
+                        android:text="Add"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <!-- Row 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+
+
+
+                </LinearLayout>
+
+                <!-- Row for Recognize, Voice, Relocate -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <Button
+                        android:id="@+id/btnRecognizeImage"
+                        android:text="🖼 Image"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:backgroundTint="@color/green"
+                        android:textColor="@color/white"
+                        android:minHeight="48dp"
+                        android:paddingVertical="10dp" />
+
+                    <Button
+                        android:id="@+id/btnVoice"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/violet"
+                        android:minHeight="48dp"
+                        android:paddingVertical="10dp"
+                        android:text="🎤 Voice"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btnRelocateUser"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/blue"
+                        android:minHeight="48dp"
+                        android:paddingVertical="10dp"
+                        android:text="📍Find Me"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnTagRemover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remove All Tags"
+                    android:backgroundTint="@color/red"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center_horizontal" />
+
+                <!-- Scrollable ingredients -->
+                <TextView
+                    android:text="Ingredients"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="107dp"
+                    android:layout_marginTop="6dp"
+                    android:scrollbars="vertical">
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/ingredientsContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        app:flexDirection="row"
+                        app:flexWrap="wrap"
+                        app:justifyContent="flex_start" />
+                </ScrollView>
+
+                <!-- Store List -->
+                <TextView
+                    android:text="Available Stores"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvStoreTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="97dp"
+                    android:layout_marginTop="6dp"
+                    android:scrollbars="vertical" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Map Section -->
+        <org.osmdroid.views.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp" />
+
+        <!-- Bottom Navigation -->
+        <include layout="@layout/layout_bottom_navigation" />
+    </LinearLayout>
+
+    <!-- Progress Loader -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+</FrameLayout>

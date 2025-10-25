@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Main content -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="#F0F2F5"
+        android:padding="24dp">
+
+        <!-- Logo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TalipaApp"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#1877F2"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Card -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="24dp"
+            android:elevation="8dp"
+            android:clipToOutline="true"
+            android:layout_marginBottom="16dp">
+
+            <!-- Email -->
+            <EditText
+                android:id="@+id/edt_email"
+                android:textColor="@color/black"
+                android:hint="Email address"
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:background="@android:color/white"
+                android:layout_marginBottom="16dp"
+                android:textColorHint="#888888"
+                android:drawablePadding="8dp"
+                android:backgroundTint="#DADDE1"/>
+
+            <!-- Password -->
+            <EditText
+                android:id="@+id/edt_password"
+                android:textColor="@color/black"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:background="@android:color/white"
+                android:layout_marginBottom="24dp"
+                android:textColorHint="#888888"
+                android:backgroundTint="#DADDE1"/>
+
+            <!-- Login Button -->
+            <Button
+                android:id="@+id/btn_login"
+                android:text="Log In"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:backgroundTint="#1877F2"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Register Button -->
+            <Button
+                android:id="@+id/btn_register"
+                android:text="Create New Account"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:backgroundTint="#42B72A"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Overlay ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+</FrameLayout>

@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:paddingHorizontal="16dp"
+    android:background="#1877F2"
+    android:gravity="center_vertical"
+    android:elevation="4dp">
+
+    <TextView
+        android:id="@+id/txtHeaderTitle"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="TalipaApp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@android:color/transparent"
+        android:background="?attr/selectableItemBackgroundBorderless"/>
+</LinearLayout>

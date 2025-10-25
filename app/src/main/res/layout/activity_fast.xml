@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F2F5">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Header -->
+        <include layout="@layout/layout_header"/>
+
+        <!-- Search Bar Container -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:elevation="2dp">
+
+            <EditText
+                android:id="@+id/edtSearch"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:hint="Search product..."
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:drawablePadding="8dp"/>
+
+
+            <Button
+                android:id="@+id/btnSearch"
+                android:text="Search"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/white"
+                android:paddingHorizontal="16dp"
+                android:drawablePadding="6dp" />
+        </LinearLayout>
+
+        <!-- Quick Actions -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="6dp">
+
+            <Button
+                android:id="@+id/btnImageOptions"
+                android:text="📷 Image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/green"
+                android:textColor="@color/white"
+                android:paddingHorizontal="14dp"/>
+
+            <Button
+                android:id="@+id/btnRecordAudio"
+                android:text="🎤Audio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/violet"
+                android:textColor="@color/white"
+                android:paddingHorizontal="14dp"
+                android:layout_marginEnd="8dp"/>
+
+
+            <Button
+                android:id="@+id/btnRelocateUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
+
+                android:paddingHorizontal="14dp"
+                android:text="📍Find Me"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvStoreTable"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="4dp"
+            android:clipToPadding="false"
+            android:scrollbars="vertical" />
+
+
+        <!-- Map Section -->
+        <org.osmdroid.views.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:foregroundGravity="center" />
+
+        <!-- Bottom Navigation -->
+        <include layout="@layout/layout_bottom_navigation"/>
+    </LinearLayout>
+
+    <!-- Loading Indicator -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+</FrameLayout>

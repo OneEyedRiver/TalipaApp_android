@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_search1"
+        android:icon="@drawable/ic_search1"
+        android:title="Search1" />
+    <item
+        android:id="@+id/nav_search2"
+        android:icon="@drawable/ic_search2"
+        android:title="Search2" />
+    <item
+        android:id="@+id/nav_cart"
+        android:icon="@drawable/ic_cart"
+        android:title="Cart" />
+    <item
+        android:id="@+id/nav_store"
+        android:icon="@drawable/ic_store"
+        android:title="Store" />
+</menu>

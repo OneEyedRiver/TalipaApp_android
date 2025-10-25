@@ -1,0 +1,20 @@
+<resources>
+    <string-array name="product_units">
+        <item>kg</item>
+        <item>pcs</item>
+    </string-array>
+
+    <string-array name="product_freshness">
+        <item>fresh</item>
+        <item>frozen</item>
+        <item>day-old</item>
+    </string-array>
+
+
+    <string-array name="product_category">
+        <item>Vegetable</item>
+        <item>Fruit</item>
+        <item>Fish</item>
+        <item>Meat</item>
+    </string-array>
+</resources>

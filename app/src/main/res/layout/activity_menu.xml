@@ -1,0 +1,80 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F2F5">
+
+    <include layout="@layout/layout_header"/>
+
+    <!-- Search bar -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="8dp"
+        android:layout_margin="8dp"
+        android:elevation="2dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/edtSearch"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:hint="Search products"
+            android:textColorHint="@color/black"
+            android:paddingHorizontal="12dp"
+            android:backgroundTint="#DADDE1"
+            android:background="@android:color/white"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"/>
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Search"
+            android:backgroundTint="#1877F2"
+            android:textColor="@android:color/white"
+            android:paddingHorizontal="16dp"/>
+    </LinearLayout>
+
+    <!-- Horizontal categories -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCategories"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="horizontal"/>
+
+    <!-- Main products list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:clipToPadding="false"/>
+
+    <include layout="@layout/layout_bottom_navigation"/>
+</LinearLayout>
+
+    <!-- Overlay ProgressBar -->
+<ProgressBar
+android:id="@+id/progressBar"
+style="?android:attr/progressBarStyleLarge"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center"
+android:visibility="gone"/>
+
+    </FrameLayout>
