@@ -241,6 +241,16 @@
                         android:layout_marginBottom="12dp"
                         android:textColor="@color/black"/>
 
+                    <Button
+                        android:id="@+id/btnPickLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pick Location on Map"
+                        android:layout_marginBottom="16dp"
+                        android:padding="12dp"
+
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="#1877F2"/>
                     <!-- Row: Coordinates -->
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -276,6 +286,7 @@
                                 android:cursorVisible="false"
                                 android:longClickable="false"
                                 android:textColor="@color/black"/>
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -309,17 +320,6 @@
                     </LinearLayout>
 
 
-                    <Button
-                        android:id="@+id/btnPickLocation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Pick Location on Map"
-                        android:layout_marginBottom="16dp"
-                        android:padding="12dp"
-                        android:background="@drawable/rounded_button"
-                        android:textColor="@android:color/white"
-                        android:backgroundTint="#1877F2"/>
-
                     <!-- Action Buttons -->
                     <LinearLayout
                         android:orientation="horizontal"
@@ -336,7 +336,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:padding="12dp"
-                            android:background="@drawable/rounded_button"
+
                             android:textColor="@android:color/white"
                             android:backgroundTint="#42B72A"/>
 
@@ -349,7 +349,7 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginEnd="8dp"
                             android:padding="12dp"
-                            android:background="@drawable/rounded_button"
+
                             android:textColor="@android:color/white"
                             android:backgroundTint="#FF9800"/>
 
@@ -360,9 +360,10 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:padding="12dp"
-                            android:background="@drawable/rounded_button"
+
                             android:textColor="@android:color/white"
-                            android:backgroundTint="#9E9E9E"/>
+                            android:backgroundTint="@color/red"
+                        />
                     </LinearLayout>
 
                 </LinearLayout>

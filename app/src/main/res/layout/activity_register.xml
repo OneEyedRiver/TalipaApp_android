@@ -157,7 +157,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/phoneInput"
+            android:text="Phone(09XXXXXXXXX)"
             android:textColor="#555555"
             android:textSize="14sp"
             android:layout_marginBottom="4dp"/>
@@ -246,7 +246,7 @@
             android:text="@string/registerBtn"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:backgroundTint="#1877F2"
+            android:backgroundTint="@color/orange"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:layout_marginBottom="12dp"/>

@@ -185,5 +185,13 @@ public interface ApiService {
             @Header("Authorization") String token,
             @Path("id") int cartId
     );
+    @FormUrlEncoded
+    @POST("api/updateAvailability/{id}")
+    Call<ApiResponse> updateAvailability(
+            @Header("Authorization") String authToken,
+            @Path("id") int productId,
+            @Field("is_available") int isAvailable // ← changed to int
+    );
+
 
 }

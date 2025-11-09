@@ -16,5 +16,6 @@
         <item>Fruit</item>
         <item>Fish</item>
         <item>Meat</item>
+        <item>Others</item>
     </string-array>
 </resources>

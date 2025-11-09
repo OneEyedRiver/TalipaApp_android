@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -56,6 +58,14 @@ public class ProductAdapter1 extends RecyclerView.Adapter<ProductAdapter1.Produc
         holder.txtName.setText(product.getProduct_name());
         holder.txtCategory.setText(product.getProduct_category());
         holder.txtPrice.setText("₱" + product.getProduct_price());
+
+        holder.switchAvailable.setChecked(product.isIs_available());
+
+        // ✅ Handle toggle event
+        holder.switchAvailable.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            product.setAvailable(isChecked);
+            updateAvailability(product.getId(), isChecked);
+        });
 
         // Load image with Glide
         Glide.with(context)
@@ -122,6 +132,8 @@ public class ProductAdapter1 extends RecyclerView.Adapter<ProductAdapter1.Produc
         ImageView imgProduct;
         Button btnEdit, btnDelete;
 
+        Switch switchAvailable;
+
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.txtProductName);
@@ -130,11 +142,40 @@ public class ProductAdapter1 extends RecyclerView.Adapter<ProductAdapter1.Produc
             imgProduct = itemView.findViewById(R.id.imgProduct);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            switchAvailable=itemView.findViewById(R.id.switchAvailable);
         }
     }
 
-    private void destroyProduct(){
+    private void updateAvailability(int productId, boolean isChecked) {
+        ApiService api = RetrofitClient.getInstance().create(ApiService.class);
 
+        Call<ApiResponse> call = api.updateAvailability(
+                "Bearer " + token,
+                productId,
+                isChecked ? 1 : 0
+        );
 
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        Log.e("API_ERROR", "Raw: " + response.errorBody().string());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(context, "Failed to update availability", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+
 }

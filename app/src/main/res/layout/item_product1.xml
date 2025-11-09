@@ -2,9 +2,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     android:elevation="4dp"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:backgroundTint="@android:color/white"
+    app:cardBackgroundColor="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +36,8 @@
                 android:layout_height="wrap_content"
                 android:text="Product Name"
                 android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
 
             <!-- Category -->
             <TextView
@@ -41,7 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Category"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/black"/>
 
             <!-- Price -->
             <TextView
@@ -51,7 +56,8 @@
                 android:text="₱0"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
             <!-- Buttons -->
             <LinearLayout
@@ -62,11 +68,14 @@
 
                 <Button
                     android:id="@+id/btnEdit"
-                    android:layout_width="wrap_content"
+                    android:layout_width="69dp"
                     android:layout_height="wrap_content"
-                    android:text="Edit"
                     android:padding="4dp"
-                    android:textSize="12sp" />
+                    android:text="Edit"
+                    android:textSize="12sp"
+                    android:backgroundTint="@color/orange"
+
+                    />
 
                 <Button
                     android:id="@+id/btnDelete"
@@ -75,9 +84,30 @@
                     android:text="Delete"
                     android:padding="4dp"
                     android:textSize="12sp"
-                    android:layout_marginStart="8dp" />
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/red"/>
             </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtAvailabilityLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Available:"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/switchAvailable"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:textOff="Unavailable"
+            android:textOn="Available" />
+
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

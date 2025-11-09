@@ -136,21 +136,48 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void uploadProduct() {
-        progressBar.setVisibility(View.VISIBLE);
-        ApiService api = RetrofitClient.getInstance().create(ApiService.class);
-        String token = "Bearer " + sharedPreferences.getString("token", "");
+
+        String nameText = edtName.getText().toString().trim();
+        String priceText = edtPrice.getText().toString().trim();
+        String descriptionText = edtDescription.getText().toString().trim();
+        String harvestText = edtHarvestDate.getText().toString().trim();
+
+        // 🔍 Validate required fields before upload
+        // 🔍 Validate required fields before upload
+        if (nameText.isEmpty()) {
+            Toast.makeText(this, "Please enter product name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (priceText.isEmpty()) {
+            Toast.makeText(this, "Please enter product price", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (harvestText.isEmpty()) {
+            Toast.makeText(this, "Please enter harvest date", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (imageFile == null) {
             Toast.makeText(this, "Please choose an image", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        RequestBody name = RequestBody.create(MediaType.parse("text/plain"), edtName.getText().toString());
+
+        // ✅ If everything is okay, show progress bar
+        progressBar.setVisibility(View.VISIBLE);
+
+        ApiService api = RetrofitClient.getInstance().create(ApiService.class);
+        String token = "Bearer " + sharedPreferences.getString("token", "");
+
+        RequestBody name = RequestBody.create(MediaType.parse("text/plain"), nameText);
         RequestBody category = RequestBody.create(MediaType.parse("text/plain"), spCategory.getSelectedItem().toString());
-        RequestBody price = RequestBody.create(MediaType.parse("text/plain"), edtPrice.getText().toString());
+        RequestBody price = RequestBody.create(MediaType.parse("text/plain"), priceText);
         RequestBody unit = RequestBody.create(MediaType.parse("text/plain"), spUnit.getSelectedItem().toString());
         RequestBody freshness = RequestBody.create(MediaType.parse("text/plain"), spFreshness.getSelectedItem().toString());
-        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), edtDescription.getText().toString());
-        RequestBody harvest = RequestBody.create(MediaType.parse("text/plain"), edtHarvestDate.getText().toString());
+        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), descriptionText);
+        RequestBody harvest = RequestBody.create(MediaType.parse("text/plain"), harvestText);
 
         // ✅ Proper image handling
         MultipartBody.Part imagePart = null;
@@ -174,12 +201,11 @@ public class AddProductActivity extends AppCompatActivity {
                 inputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(this, "Failed to read image", Toast.LENGTH_SHORT).show();
                 return;
             }
         }
-
-
 
         Log.d("TOKEN_CHECK", token);
         Call<ApiResponse> call = api.uploadProduct(token, name, category, price, unit, freshness, description, harvest, imagePart);
@@ -189,16 +215,11 @@ public class AddProductActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
 
                 try {
-
                     if (response.isSuccessful() && response.body() != null) {
                         Log.d("UPLOAD_SUCCESS", new Gson().toJson(response.body()));
                         Toast.makeText(getApplicationContext(), "Uploaded Successfully", Toast.LENGTH_SHORT).show();
 
-                        // ✅ Get product info including image URL
-                        // inside onResponse, after getting uploadedProduct
                         Product uploadedProduct = response.body().getProduct();
-                        Log.d("GLIDE_URL", "Loading: " + uploadedProduct.getProduct_image());
-
                         if (uploadedProduct != null && uploadedProduct.getProduct_image() != null) {
                             String imageUrl = uploadedProduct.getProduct_image().replace("\\/", "/");
                             Log.d("GLIDE_URL", "Loading: " + imageUrl);
@@ -212,8 +233,6 @@ public class AddProductActivity extends AppCompatActivity {
                             }
                         }
 
-
-                        // ✅ Navigate back after success
                         Intent intent = new Intent(AddProductActivity.this, SellActivity.class);
                         startActivity(intent);
                         finish();
@@ -221,19 +240,37 @@ public class AddProductActivity extends AppCompatActivity {
                     } else if (response.errorBody() != null) {
                         String errorRaw = response.errorBody().string();
                         Log.e("UPLOAD_ERROR_RAW", errorRaw);
+
+                        if (errorRaw.contains("must be a file of type")) {
+                            Toast.makeText(AddProductActivity.this,
+                                    "Image type not supported. Please upload JPG, JPEG, PNG, or GIF.",
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(AddProductActivity.this,
+                                    "Upload failed. Please check your inputs.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Log.e("UPLOAD_UNKNOWN", "Empty response");
+                        Toast.makeText(AddProductActivity.this,
+                                "Unknown server response. Please try again.",
+                                Toast.LENGTH_SHORT).show();
                     }
+
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Toast.makeText(AddProductActivity.this,
+                            "An unexpected error occurred.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
-
                 Log.e("UPLOAD_FAILURE", t.getMessage(), t);
+                Toast.makeText(AddProductActivity.this,
+                        "Failed to connect to server. Please try again.",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

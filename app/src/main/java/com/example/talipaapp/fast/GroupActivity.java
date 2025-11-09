@@ -801,7 +801,7 @@ public class GroupActivity extends BaseActivity {
         removeBtn.setOnClickListener(v -> {
             ingredientsContainer.removeView((View) v.getParent());
             removeIngredientFromPrefs(ingredient);
-            Toast.makeText(this, "Removed: " + ingredient, Toast.LENGTH_SHORT).show();
+
         });
 
         LinearLayout tagLayout = new LinearLayout(this);

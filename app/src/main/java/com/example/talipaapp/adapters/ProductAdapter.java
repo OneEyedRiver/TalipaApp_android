@@ -41,7 +41,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.txtName.setText(product.getProduct_name());
         holder.txtCategory.setText(product.getProduct_category());
         holder.txtPrice.setText("₱" + product.getProduct_price());
-
+        holder.txtUnit.setText("per " + product.getProduct_unit());
         Glide.with(context)
                 .load(product.getProduct_image())
                 .placeholder(R.drawable.imagesnon)
@@ -53,6 +53,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
             intent.putExtra("productId", product.getId());
             intent.putExtra("sellerId", product.getSeller_id());
+            intent.putExtra("storeId", product.getStore_id());
             intent.putExtra("productName", product.getProduct_name());
             intent.putExtra("productCategory", product.getProduct_category());
             intent.putExtra("price", product.getProduct_price());
@@ -83,7 +84,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView imgProduct;
-        TextView txtName, txtCategory, txtPrice;
+        TextView txtName, txtCategory, txtPrice, txtUnit;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,6 +92,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             txtName = itemView.findViewById(R.id.txtName);
             txtCategory = itemView.findViewById(R.id.txtCategory);
             txtPrice = itemView.findViewById(R.id.txtPrice);
+            txtUnit = itemView.findViewById(R.id.txtUnit);
         }
     }
 }

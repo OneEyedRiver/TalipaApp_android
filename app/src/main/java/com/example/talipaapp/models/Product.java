@@ -47,6 +47,11 @@ public class Product {
     public boolean isPick_up_availability() { return pick_up_availability == 1; }
     public boolean isIs_available() { return is_available == 1; }
 
+    private int store_id;
+
+    public void setAvailable(boolean available) {
+        this.is_available = available ? 1 : 0;
+    }
     public String getProduct_description() { return product_description; }
 
     // --- Coordinates ---
@@ -55,4 +60,6 @@ public class Product {
 
     public void setStoreLatitude(double lat) { this.storeLatitude = lat; }
     public void setStoreLongitude(double lng) { this.storeLongitude = lng; }
-}
+    public int getStore_id() { return store_id; }
+    public void setStore_id(int store_id) { this.store_id = store_id; }
+    }

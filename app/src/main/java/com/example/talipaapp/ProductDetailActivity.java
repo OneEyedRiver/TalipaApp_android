@@ -20,7 +20,7 @@ import retrofit2.Response;
 public class ProductDetailActivity extends BaseActivity {
 
     ImageView imgProduct;
-    TextView txtName, txtCategory, txtPrice, txtDescription;
+    TextView txtName, txtCategory, txtPrice, txtDescription, txtUnit;
     Button btnAddToCart;
 
     ApiService apiService;
@@ -41,6 +41,7 @@ public class ProductDetailActivity extends BaseActivity {
         txtName = findViewById(R.id.txtNameDetail);
         txtCategory = findViewById(R.id.txtCategoryDetail);
         txtPrice = findViewById(R.id.txtPriceDetail);
+        txtUnit = findViewById(R.id.txtUnitDetail);
         txtDescription = findViewById(R.id.txtDescriptionDetail);
         btnAddToCart = findViewById(R.id.btnAddToCart);
 
@@ -50,6 +51,7 @@ public class ProductDetailActivity extends BaseActivity {
         // ✅ Fetch data from Intent
         productId = getIntent().getIntExtra("productId", 0);
         sellerId = getIntent().getIntExtra("sellerId", 0);
+        storeId = getIntent().getIntExtra("storeId", 0);
         productName = getIntent().getStringExtra("productName");
         productCategory = getIntent().getStringExtra("productCategory");
         productPrice = getIntent().getDoubleExtra("price", 0.0);
@@ -63,7 +65,7 @@ public class ProductDetailActivity extends BaseActivity {
         // ✅ Get coordinates from Intent
         latitude = getIntent().getDoubleExtra("latitude", 0.0);
         longitude = getIntent().getDoubleExtra("longitude", 0.0);
-        storeId = sellerId; // Treat sellerId as storeId for cart consistency
+        // Treat sellerId as storeId for cart consistency
 
         Log.d("DEBUG_ADD_CART",
                 "productId=" + productId +
@@ -80,7 +82,7 @@ public class ProductDetailActivity extends BaseActivity {
         txtCategory.setText(productCategory != null ? productCategory : "Uncategorized");
         txtPrice.setText("₱" + productPrice);
         txtDescription.setText(productDescription != null ? productDescription : "No description available");
-
+        txtUnit.setText("Per " + productUnit);
         Glide.with(this)
                 .load(productImage)
                 .placeholder(R.drawable.imagesnon)

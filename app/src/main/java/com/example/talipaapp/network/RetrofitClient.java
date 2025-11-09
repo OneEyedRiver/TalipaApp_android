@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
  private static final String BASE_URL = "https://talipaapp.shop/";
-   //  private static final String BASE_URL = "http://172.29.128.1:8000/";
+//private static final String BASE_URL = "http://172.25.48.1:8000/";
     private static Retrofit retrofit;
 
     public static Retrofit getInstance() {
